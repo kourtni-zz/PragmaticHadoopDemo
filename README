@@ -1,0 +1,10 @@
+This project is intended to demo a Hadoop MapReduce job.
+
+For this demo the task of the MapReduce will be to determine the longest word
+in each line of text of a given file, and then group the results by length.
+
+To run, you must first install the latest version of Hadoop (or at least one
+compatible with the 0.21 API).
+
+The code should run on a stand alone installation and easily scale to a
+cluster.
