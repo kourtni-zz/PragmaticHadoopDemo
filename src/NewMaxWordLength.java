@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.TreeSet;
 
 import org.apache.hadoop.fs.Path;
@@ -20,16 +21,16 @@ import org.apache.hadoop.mapreduce.Reducer;
 /**
  * A Hadoop Map / Reduce job written for the 0.21 API.
  * 
- * The mapper function reads each line of a file and outputs
- * that length of the longest word as a key, and the word itself
+ * The mapper function reads each line of a file, then outputs
+ * the length of the longest word as a key and the word itself
  * as the value.
  * 
  * The reducer function combines and alphabetically arranges all
  * words of the same length.
  * 
- * The output file created by this job will have print the
- * length of the longest word and samples of words that length
- * on the last line of the file.
+ * The output file created by this job will print the length of
+ * the longest word(s) and sample words of that length on the
+ * last line of the file.
  * 
  * Usage: NewMaxWordLength <input path> <output path>
  * 
@@ -42,7 +43,7 @@ public class NewMaxWordLength {
 		extends Mapper<LongWritable, Text, IntWritable, Text>{
 		
 		private Text longestWord = new Text();
-		ArrayList<String> wordList= new ArrayList<String>();
+		List<String> wordList = new ArrayList<String>();
 		
 		public void map(LongWritable key, Text value, Context context)
 				throws IOException, InterruptedException {
